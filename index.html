@@ -4,73 +4,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brendan's Weekly WordPress Newsletter</title>
-    <style>
+<style>
+    /* Modern font and base styles */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8fafc;
+        color: #334155;
+    }
+
+    /* Container with subtle gradient background */
+    .newsletter-container {
+        background: linear-gradient(to bottom, #ffffff, #f9fafb);
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 
+                    0 2px 4px -2px rgba(0,0,0,0.05);
+    }
+
+    /* Modern heading styles */
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1rem;
+    }
+
+    /* Post card styling */
+    .post {
+        border: 1px solid #e2e8f0;
+        padding: 24px;
+        margin-bottom: 24px;
+        display: flex;
+        gap: 24px;
+        border-radius: 12px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        background: white;
+    }
+
+    .post:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    .post:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Responsive image */
+    .post-image {
+        width: 280px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    .post-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .post-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .post-summary {
+        color: #64748b;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
+    /* Modern button style */
+    .button {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #0ea5e9;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        align-self: flex-start;
+    }
+
+    .button:hover {
+        background-color: #0284c7;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    footer {
+        margin-top: 40px;
+        text-align: center;
+        color: #64748b;
+        padding: 20px 0;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .author-link {
+        color: #0ea5e9;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .author-link:hover {
+        color: #0284c7;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f4f4;
+            padding: 16px;
         }
+
         .newsletter-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 24px;
         }
+
         .post {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 20px;
+            flex-direction: column;
+            gap: 16px;
         }
-        .post:last-child {
-            border-bottom: none;
+
+       .post-image {
+    width: 280px;
+    height: auto; /* Remove fixed height */
+    object-fit: contain; /* Changed from 'cover' to 'contain' */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    background-color: #f8fafc; /* Light background for images with transparency */
+    aspect-ratio: 16/9; /* Maintains consistent proportions */
+    padding: 8px; /* Add some padding around the image */
+}
+
+/* Responsive adjustment for images */
+@media (max-width: 768px) {
+    .post-image {
+        width: 100%;
+        height: auto;
+        max-height: 300px; /* Prevent excessive height on mobile */
+    }
+}
+
+        h1 {
+            font-size: 2rem;
         }
-        .post-image {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        .post-content {
-            flex: 1;
-        }
+
         .post-title {
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
+
         .post-summary {
-            color: #666;
-            margin-bottom: 15px;
+            font-size: 1rem;
         }
+    }
+
+    /* Small screens */
+    @media (max-width: 480px) {
+        .newsletter-container {
+            padding: 16px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
         .button {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #0073aa;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #005177;
-        }
-        footer {
-            margin-top: 30px;
+            width: 100%;
             text-align: center;
-            color: #666;
         }
-        .author-link {
-            color: #0073aa;
-            text-decoration: none;
-        }
-        .author-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    }
+</style>
+
 </head>
 <body>
 <div class="newsletter-container">
@@ -82,17 +199,386 @@
         <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/freelancer-save-money-thumb.jpg" alt="Article thumbnail">
         <div class="post-content">
             <h2 class="post-title">Easy Ways to Cut Costs for Your WordPress Freelance Business</h2>
-            <div class="post-summary">The blog post provides freelancers with strategies to identify and reduce unnecessary expenses in their WordPress businesses. It emphasizes the importance of understanding spending habits by tracking various costs, including web hosting, subscription services, and payment fees. By evaluating these expenditures, freelancers can discover areas to cut back, find alternative solutions, and negotiate better pricing. This approach not only helps improve profitability but also ensures freelancers remain competitive in a challenging economic environment.</div>
+            <div class="post-summary">This blog post offers freelancers practical strategies for identifying and reducing unnecessary spending in their WordPress businesses. Key points include understanding spending patterns, tracking costs systematically, cutting non-essential subscriptions and services, and finding cheaper alternatives for necessary tools. The blog emphasizes that effective cost management is crucial for freelancers to maintain profitability and stay competitive, especially in an environment where costs can quickly escalate. By taking control of their expenses, freelancers can significantly enhance their financial health.</div>
             <a href="https://thewpminute.com/easy-ways-to-cut-costs-for-your-wordpress-freelance-business/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/State-of-WordPress-Enterprise-2024-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/Choosing-WordPress-in-Enterprise-for-Functionality.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
     </div>
     
     <div class="post">
         <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/victor-ramirez-thumb.jpg" alt="Article thumbnail">
         <div class="post-content">
-            <h2 class="post-title">The Challenges WordPress Professionals Face in 2025</h2>
-            <div class="post-summary">This blog post summarizes a podcast episode discussing the anticipated challenges facing WordPress professionals in 2025. Key issues include increasing competition from other CMS platforms, the transformative role of AI in development and marketing, and the potential decline of enterprise adoption of WordPress. The conversation also highlights the importance of SEO in an AI-driven landscape and addresses the ongoing debate over WordPress usability with the Gutenberg editor. Understanding these challenges is crucial for professionals to adapt and thrive in an evolving market.</div>
-            <a href="https://thewpminute.com/the-challenges-wordpress-professionals-face-in-2025/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Cory-Miller-A2-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Ariele-Krantzow-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Screenshot-2025-01-27-at-9.31.11 AM.png" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/arielle-krantzow-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/freelancer-save-money-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/State-of-WordPress-Enterprise-2024-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/Choosing-WordPress-in-Enterprise-for-Functionality.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/victor-ramirez-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Cory-Miller-A2-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Ariele-Krantzow-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Screenshot-2025-01-27-at-9.31.11 AM.png" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/arielle-krantzow-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/freelancer-save-money-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/State-of-WordPress-Enterprise-2024-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/Choosing-WordPress-in-Enterprise-for-Functionality.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/victor-ramirez-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Cory-Miller-A2-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Ariele-Krantzow-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Screenshot-2025-01-27-at-9.31.11 AM.png" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/arielle-krantzow-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/freelancer-save-money-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2023/10/katie.png" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">Diversify with Shopify</h2>
+            <div class="post-summary">In this blog post from the WP Minute+, Katie Keith, co-founder of Barn2 Plugins, discusses her strategic decision to diversify her business into Shopify, alongside existing WordPress products. This move comes in the wake of uncertainties surrounding WooCommerce and WordPress leadership. Katie emphasizes the balance of continuing to support WordPress while addressing gaps in the Shopify app market. The insights are crucial for WordPress professionals, as they highlight the importance of adaptability and diversification in response to market changes, ensuring business stability and growth.</div>
+            <a href="https://thewpminute.com/diversify-with-shopify/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/State-of-WordPress-Enterprise-2024-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/Choosing-WordPress-in-Enterprise-for-Functionality.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/victor-ramirez-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Cory-Miller-A2-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Ariele-Krantzow-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Screenshot-2025-01-27-at-9.31.11 AM.png" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/arielle-krantzow-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/freelancer-save-money-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/State-of-WordPress-Enterprise-2024-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/Choosing-WordPress-in-Enterprise-for-Functionality.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/02/victor-ramirez-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Cory-Miller-A2-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Ariele-Krantzow-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Screenshot-2025-01-27-at-9.31.11 AM.png" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/arielle-krantzow-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/freelancer-save-money-thumb.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">No Title</h2>
+            <div class="post-summary">No Summary</div>
+            <a href="#" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
+        </div>
+    </div>
+    
+    <div class="post">
+        <img class="post-image" src="https://mltvfqeu9ctb.i.optimole.com/cb:9lkR.62ecf/w:auto/h:auto/q:mauto/f:best/https://thewpminute.com/wp-content/uploads/2025/01/Ariele-Krantzow-WP-Minute.jpg" alt="Article thumbnail">
+        <div class="post-content">
+            <h2 class="post-title">Marketing at a Managed WordPress Host</h2>
+            <div class="post-summary">In this episode of The WP Minute+, Ariele Krantzow, Marketing Lead at Pressable, discusses her transition from design to content marketing and the strategies employed at Pressable to enhance the WordPress hosting experience. She emphasizes the importance of customer education, community engagement at WordCamps, and the role of creativity in standing out in a digital landscape increasingly influenced by AI. Her insights highlight the evolving marketing landscape for managed WordPress hosts and the necessity for authenticity and user-centric approaches.</div>
+            <a href="https://thewpminute.com/marketing-at-a-managed-wordpress-host/" class="button" target="_blank" rel="noopener noreferrer">Read Full Post</a>
         </div>
     </div>
     
