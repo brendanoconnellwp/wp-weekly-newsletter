@@ -1,2 +1,4 @@
 # wp-weekly-newsletter
-Brendan's Weekly Roundup
+Brendan's Weekly Newsletter Roundup
+
+## How it works
